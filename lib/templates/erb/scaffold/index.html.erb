@@ -1,8 +1,12 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
+
+
 <p id="notice"><%%= notice %></p>
 
 <h1><%= plural_table_name.titleize %></h1>
 
-<table style="border: 1px solid black;">
+<table data-toggle="table" data-pagination="true" data-search="true">
   <thead>
     <tr>
 <% attributes.reject(&:password_digest?).each do |attribute| -%>
@@ -18,14 +22,19 @@
 <% attributes.reject(&:password_digest?).each do |attribute| -%>
         <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
 <% end -%>
-        <td><%%= link_to 'Show', <%= singular_table_name %> %></td>
-        <td><%%= link_to 'Edit', edit_<%= singular_table_name %>_path(<%= singular_table_name %>) %></td>
-        <td><%%= link_to 'Destroy', <%= singular_table_name %>, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%%= link_to 'Show', <%= singular_table_name %>, :class => 'btn btn-default btn-xs' %></td>
+        <td><%%= link_to 'Edit', edit_<%= singular_table_name %>_path(<%= singular_table_name %>), :class => 'btn btn-default btn-xs' %></td>
+        <td><%%= link_to 'Destroy', <%= singular_table_name %>, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-default btn-xs btn-danger' %></td>
       </tr>
+
     <%% end %>
   </tbody>
 </table>
 
 <br>
+<%%= link_to 'New <%= singular_table_name.titleize %>', new_<%= singular_table_name %>_path, :class => 'btn btn-primary' %>
 
-<%%= link_to 'New <%= singular_table_name.titleize %>', new_<%= singular_table_name %>_path %>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-pt-BR.min.js"> </script>

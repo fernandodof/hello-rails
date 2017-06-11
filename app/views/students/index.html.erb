@@ -1,8 +1,12 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
+
+
 <p id="notice"><%= notice %></p>
 
 <h1>Students</h1>
 
-<table style="border: 1px solid black;">
+<table data-toggle="table" data-pagination="true" data-search="true">
   <thead>
     <tr>
       <th>Name</th>
@@ -16,14 +20,19 @@
       <tr>
         <td><%= student.name %></td>
         <td><%= student.age %></td>
-        <td><%= link_to 'Show', student %></td>
-        <td><%= link_to 'Edit', edit_student_path(student) %></td>
-        <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', student, :class => 'btn btn-default btn-xs' %></td>
+        <td><%= link_to 'Edit', edit_student_path(student), :class => 'btn btn-default btn-xs' %></td>
+        <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-default btn-xs btn-danger' %></td>
       </tr>
+
     <% end %>
   </tbody>
 </table>
 
 <br>
+<%= link_to 'New Student', new_student_path, :class => 'btn btn-primary' %>
 
-<%= link_to 'New Student', new_student_path %>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-pt-BR.min.js"> </script>

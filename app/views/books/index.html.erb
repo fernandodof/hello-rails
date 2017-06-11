@@ -1,8 +1,12 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
+
+
 <p id="notice"><%= notice %></p>
 
 <h1>Books</h1>
 
-<table>
+<table data-toggle="table" data-pagination="true" data-search="true">
   <thead>
     <tr>
       <th>Name</th>
@@ -16,14 +20,19 @@
       <tr>
         <td><%= book.name %></td>
         <td><%= book.author %></td>
-        <td><%= link_to 'Show', book %></td>
-        <td><%= link_to 'Edit', edit_book_path(book) %></td>
-        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', book, :class => 'btn btn-default btn-xs' %></td>
+        <td><%= link_to 'Edit', edit_book_path(book), :class => 'btn btn-default btn-xs' %></td>
+        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-default btn-xs btn-danger' %></td>
       </tr>
+
     <% end %>
   </tbody>
 </table>
 
 <br>
+<%= link_to 'New Book', new_book_path, :class => 'btn btn-primary' %>
 
-<%= link_to 'New Book', new_book_path %>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-pt-BR.min.js"> </script>
