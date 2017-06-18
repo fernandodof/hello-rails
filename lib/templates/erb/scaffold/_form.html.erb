@@ -1,19 +1,26 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <%%= form_for @<%= singular_table_name %>, :html => { :class => "form-horizontal" } do |f| %>
-<div id="error_expl" class="panel panel-danger">
-  <div class="panel-heading">
-    <h3 class="panel-title">
-      <%%= pluralize(<%= singular_table_name %>.errors.count, "error") %> prohibited this 
-      <%= singular_table_name %> from being saved:
-    </h3>
-  </div>
-  <div class="panel-body">
-    <ul><%% <%= singular_table_name %>.errors.full_messages.each do |message| %>
-      <li><%%= message %></li>
-    <%% end %></ul>
-  </div>
-</div>
+  <%% if <%= singular_table_name %>.errors.any? %>
+    <div id="error_explanation" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <%%= pluralize(<%= singular_table_name %>.errors.count, "error") %> prohibited this 
+          <%= singular_table_name  %> from being saved:
+        </h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+          <%% <%= singular_table_name %>.errors.full_messages.each do |message| %>
+            <li><%%= message %></li>
+          <%% end %>
+        </ul>
+      </div>
+    </div>
+  <%% end %>
 
 <% attributes.each do |attribute| -%>
   <div class="field">
@@ -26,17 +33,19 @@
     <%%= f.label :password_confirmation %>
     <%%= f.password_field :password_confirmation %>
 <% else -%>
-    <%%= f.label :<%= attribute.column_name %> %>
-    <%%= f.<%= attribute.field_type %> :<%= attribute.column_name %> %>
+    <div class="form-group">
+      <%%= f.label :<%= attribute.column_name %>, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-10">
+        <%%= f.<%= attribute.field_type %> :<%= attribute.column_name %> %>
+      </div>
+    </div>
 <% end -%>
   </div>
 
 <% end -%>
-  <div class="actions">
-    <%%= f.submit %>
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10 actions">
+      <%%= f.submit nil, :class => 'btn btn-primary' %>
+    </div>
   </div>
 <%% end %>
-
-
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

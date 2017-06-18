@@ -1,35 +1,30 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-<%= form_for @book, :html => { :class => "form-horizontal" } do |f| %>
-<div id="error_expl" class="panel panel-danger">
-  <div class="panel-heading">
-    <h3 class="panel-title">
-      <%= pluralize(book.errors.count, "error") %> prohibited this 
-      book from being saved:
-    </h3>
-  </div>
-  <div class="panel-body">
-    <ul><% book.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %></ul>
-  </div>
-</div>
-
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :author %>
-    <%= f.text_field :author %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
-
-
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<%= form_for @book, :html => { :class => "form-horizontal" } do |f| %>
+  <% if book.errors.any? %>
+    <div id="error_explanation" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <%= pluralize(book.errors.count, "error") %> prohibited this 
+          book from being saved:
+        </h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+          <% book.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10 actions">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>
