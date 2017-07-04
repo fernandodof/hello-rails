@@ -1,30 +1,28 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<%= form_for @student, :html => { :class => "form-horizontal" } do |f| %>
-  <% if student.errors.any? %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/css/bootstrap-slider.min.css">
+<%= form_for @student , :html => { :class => "form-horizontal" } do |f| %>
+  <% if @student.errors.any? %>
     <div id="error_explanation" class="panel panel-danger">
-      <div class="panel-heading">
-        <h3 class="panel-title">
-          <%= pluralize(student.errors.count, "error") %> prohibited this 
-          student from being saved:
-        </h3>
-      </div>
-      <div class="panel-body">
-        <ul>
-          <% student.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h3>
+</div>
+<div class="panel-body">
+      <ul>
+      <% @student.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
       </div>
     </div>
   <% end %>
 
   <div class="form-group">
-    <div class="col-lg-offset-2 col-lg-10 actions">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
+   <div class="col-lg-offset-2 col-lg-10">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
     </div>
   </div>
 <% end %>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/bootstrap-slider.min.js"></script>

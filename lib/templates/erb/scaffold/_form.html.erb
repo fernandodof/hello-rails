@@ -1,51 +1,51 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<%%= form_for @<%= singular_table_name %>, :html => { :class => "form-horizontal" } do |f| %>
-  <%% if <%= singular_table_name %>.errors.any? %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/css/bootstrap-slider.min.css">
+<%%= form_for @<%= singular_table_name %> , :html => { :class => "form-horizontal" } do |f| %>
+  <%% if @<%= singular_table_name %>.errors.any? %>
     <div id="error_explanation" class="panel panel-danger">
-      <div class="panel-heading">
-        <h3 class="panel-title">
-          <%%= pluralize(<%= singular_table_name %>.errors.count, "error") %> prohibited this 
-          <%= singular_table_name  %> from being saved:
-        </h3>
-      </div>
-      <div class="panel-body">
-        <ul>
-          <%% <%= singular_table_name %>.errors.full_messages.each do |message| %>
-            <li><%%= message %></li>
-          <%% end %>
-        </ul>
+    <div class="panel-heading">
+      <h3 class="panel-title"><%%= pluralize(@<%= singular_table_name %>.errors.count, "error") %> prohibited this <%= singular_table_name %> from being saved:</h3>
+</div>
+<div class="panel-body">
+      <ul>
+      <%% @<%= singular_table_name %>.errors.full_messages.each do |message| %>
+        <li><%%= message %></li>
+      <%% end %>
+      </ul>
       </div>
     </div>
   <%% end %>
 
 <% attributes.each do |attribute| -%>
-  <div class="field">
+  <div class="form-group">
 <% if attribute.password_digest? -%>
-    <%%= f.label :password %>
+    <%%= f.label :password %><br>
     <%%= f.password_field :password %>
   </div>
-
-  <div class="field">
-    <%%= f.label :password_confirmation %>
+  <div class="form-group">
+    <%%= f.label :password_confirmation %><br>
     <%%= f.password_field :password_confirmation %>
 <% else -%>
-    <div class="form-group">
-      <%%= f.label :<%= attribute.column_name %>, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-10">
-        <%%= f.<%= attribute.field_type %> :<%= attribute.column_name %> %>
-      </div>
-    </div>
+  <%%= f.label :<%= attribute.column_name %> %>
+<% if attribute.type == :integer -%>
+  <%%= f.text_field :<%= attribute.column_name %>, { :class => 'form-control', :data => {
+      'slider-id' => '<%= attribute.column_name %>Slider', 'slider-min' => '0',
+      'slider-max' => '20', 'slider-step' => '1' } } %>
+  <%%= javascript_tag '$("#<%= singular_table_name %>_<%= attribute.column_name %>").slider({});' %>
+
+<% else -%>
+  <%%= f.<%= attribute.field_type %> :<%= attribute.column_name %>, :class => 'form-control' %>
+<% end -%>
 <% end -%>
   </div>
-
 <% end -%>
   <div class="form-group">
-    <div class="col-lg-offset-2 col-lg-10 actions">
-      <%%= f.submit nil, :class => 'btn btn-primary' %>
+   <div class="col-md-offset-2 col-md-10">
+    <%%= f.submit nil, :class => 'btn btn-primary' %>
     </div>
   </div>
 <%% end %>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/bootstrap-slider.min.js"></script>
