@@ -1,10 +1,27 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<p id="notice"><%= notice %></p>
 
-<dl class="dl-horizontal">
-</dl>
-<%= link_to 'Edit', edit_student_path(@student) %> |
-<%= link_to 'Back', students_path %>
+<div class="container">
+
+  <p id="notice"><%= notice %></p>
+
+  <dl class="dl-horizontal">
+              <div>
+        <dt><strong>Number:</strong></dt>
+        <dd><%= @student.number %></dd>
+      </div>
+
+     
+              <div>
+        <dt><strong>Student:</strong></dt>
+        <dd><%= @student.student %></dd>
+      </div>
+
+     
+      </dl>
+  <%= link_to 'Edit', edit_student_path(@student) %> |
+  <%= link_to 'Back', students_path %>
+
+</div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

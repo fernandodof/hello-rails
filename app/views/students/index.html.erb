@@ -1,29 +1,42 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<p id="notice"><%= notice %></p>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
+<div class="container">
+  <p id="notice"><%= notice %></p>
 
-<h1>Listing Students</h1>
+  <h1>Listing Students</h1>
 
-<table  class="table table-striped">
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @students.each do |student| %>
+   
+    <table data-toggle="table" data-pagination="true" class="table table-striped">
+      <thead>
       <tr>
-        <td><%= link_to 'Show', student, :class => 'btn btn-default btn-xs' %></td>
-        <td><%= link_to 'Edit', edit_student_path(student), :class => 'btn btn-default btn-xs' %></td>
-        <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-default btn-xs btn-danger'  %></td>
+                  <th>Number</th>
+                  <th>Student</th>
+                <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @students.each do |student| %>
+        <tr>
+                      <td><%= student.number %></td>
+                      <td><%= student.student %></td>
+                    <td>
+            <div class="pull-right">
+              <%= link_to 'Show', student, :class => 'btn btn-default btn-xs' %>
+              <%= link_to 'Edit', edit_student_path(student), :class => 'btn btn-default btn-xs' %>
+              <%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger btn-xs'  %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New Student', new_student_path, :class => 'btn btn-primary' %>
+  <br>
 
+  <%= link_to 'New Student', new_student_path, :class => 'btn btn-primary' %>
+</div>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-pt-BR.min.js"> 
